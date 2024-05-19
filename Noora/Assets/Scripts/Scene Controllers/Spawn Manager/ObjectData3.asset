@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9f7fc398222014c90f68ce0d7c6cf8, type: 3}
+  m_Name: ObjectData3
+  m_EditorClassIdentifier: 
+  objectName: 
+  howManyObjectsAtFirst: 1
+  objectActivationDeltaTime: 12
+  firstActivationTime: 4
+  minSpawnRate: 1
+  maxSpawnRate: 12
+  spawnRiseRate: 0.1
+  spawnRateFrameCounterLimit: 400
+  spawnRateFrameCounter: 0
+  _minX: 0
+  _maxX: 0
+  _minY: 0
+  _maxY: 0
+  verticalSpeed: 1.31
+  objectToSpawn: {fileID: 154022712967740975, guid: bb039736835864f40810a2b7c9ebd7c0, type: 3}
+  player: {fileID: 0}
+  manager: {fileID: 0}
