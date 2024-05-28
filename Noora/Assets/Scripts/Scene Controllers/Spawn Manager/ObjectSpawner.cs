@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -31,6 +32,9 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] MainManager manager;
     [SerializeField] Canvas parentCanvas;
     [SerializeField] private GameObject objectToSpawn;
+
+    public Func<float> speedDemandAction;
+
 
     private void Start()
     { 
@@ -119,6 +123,7 @@ public class ObjectSpawner : MonoBehaviour
     GameObject SpawnObject(GameObject toSpawnObject)
     {
         Vector2 setPoint = new Vector2(Random.Range(_minX, _maxX), _maxY);
+        verticalSpeed = speedDemandAction.Invoke();
         GameObject toSpawnObjectInstance = Instantiate(toSpawnObject, setPoint, Quaternion.identity);
         initializeObject(toSpawnObjectInstance.GetComponent<OperativeEntity>());
         PushToDeactivate(toSpawnObjectInstance);
