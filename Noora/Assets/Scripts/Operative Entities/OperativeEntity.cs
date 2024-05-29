@@ -41,17 +41,7 @@ public class OperativeEntity : MonoBehaviour
         rgbd2D.velocity = new Vector2(0, -verticalSpeed);
     }
 
-    //protected virtual void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.GetComponent<OperativeEntity>() != null)
-    //    {
-    //        if (influenceFactor > collision.GetComponent<OperativeEntity>().influenceFactor)
-    //        {
-    //            CollisionManager.instance.CreateCollisionEntity(gameObject, collision.gameObject);
-    //        }
-    //    }
 
-    //}
 
     public virtual void CollideAsEffective()
     {

@@ -19,7 +19,8 @@ public class MainManager : MonoBehaviour
     //[SerializeField] private GameObject sideLeft;
     [SerializeField] private GameObject sides;
 
-    [SerializeField] MultiSpawn spawnManager;
+     SpawnManager spawnManager;
+     SpeedManager speedManager;
     [SerializeField] GameObject UIText;
     [SerializeField] GameObject UIGameplay;
 
@@ -34,14 +35,11 @@ public class MainManager : MonoBehaviour
     [SerializeField] float backgroundSpeed = .5f;
     Material bgMaterial;
     Vector2 bgOffset;
-    UnityEvent onBackgroundSpeedChange;
 
-    private UnityAction onBgSpdChng;
-
-    [SerializeField] private float verticalSpeed, maxVerticalSpeed, minVerticalSpeed;
-    [SerializeField] private float verticalSpeedRiseRate;
-    [SerializeField] private float verticalSpeedFrameCounterLimit; // in frames
-    [SerializeField] private int verticalSpeedFrameCounter = 0;
+    //[SerializeField] private float verticalSpeed, maxVerticalSpeed, minVerticalSpeed;
+    //[SerializeField] private float verticalSpeedRiseRate;
+    //[SerializeField] private float verticalSpeedFrameCounterLimit; // in frames
+    //[SerializeField] private int verticalSpeedFrameCounter = 0;
 
     [SerializeField] int howManyTimesIn1Sec;
 
@@ -58,7 +56,8 @@ public class MainManager : MonoBehaviour
     }
     void Start()
     {
-        spawnManager = gameObject.GetComponent<MultiSpawn>();
+        spawnManager = gameObject.GetComponent<SpawnManager>();
+        speedManager = gameObject.GetComponent<SpeedManager>();
         //PlayerPrefs.SetInt("HighScore",0);
         highScoreText = UIText.GetComponentsInChildren<Transform>()[1].GetComponent<Text>();
         scoreText = UIText.GetComponentsInChildren<Transform>()[2].GetComponent<Text>();
@@ -69,7 +68,7 @@ public class MainManager : MonoBehaviour
         minY = borders[2].GetComponent<Border>().transform.position.y;
         maxY = borders[3].GetComponent<Border>().transform.position.y;
 
-        spawnManager.ManagerToSpawnerData(verticalSpeed);
+        //spawnManager.CallManagerForSpeedData(verticalSpeed);
 
         bgMaterial = BG.GetComponent<Renderer>().material;
         bgOffset = new Vector2(0f, backgroundSpeed);
@@ -96,17 +95,17 @@ public class MainManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (verticalSpeedFrameCounter >= verticalSpeedFrameCounterLimit)
-        {
-            verticalSpeed += verticalSpeedRiseRate; // += 0.05f
-            verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
-            spawnManager.ManagerToSpawnerData(verticalSpeed);
-            verticalSpeedFrameCounter = 0;
-        }
-        else
-        {
-            verticalSpeedFrameCounter++;
-        }
+        //if (verticalSpeedFrameCounter >= verticalSpeedFrameCounterLimit)
+        //{
+        //    verticalSpeed += verticalSpeedRiseRate; // += 0.05f
+        //    verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
+        //    spawnManager.CallManagerForSpeedData(verticalSpeed);
+        //    verticalSpeedFrameCounter = 0;
+        //}
+        //else
+        //{
+        //    verticalSpeedFrameCounter++;
+        //}
 
     }
 
@@ -114,6 +113,12 @@ public class MainManager : MonoBehaviour
     {
         spawnManager.PushToDeactivate(spawnedObject);
     }
+
+    public float CallForData(string assignedObjName)
+    {
+        return speedManager.CallForData(assignedObjName);
+    }
+
 
     public void setScore(int newScore)
     {

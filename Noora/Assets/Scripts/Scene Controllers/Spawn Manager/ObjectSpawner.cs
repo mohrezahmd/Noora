@@ -33,15 +33,15 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] Canvas parentCanvas;
     [SerializeField] private GameObject objectToSpawn;
 
-    public Func<float> speedDemandAction;
-
 
     private void Start()
-    { 
+    {
         if (readDataFromSO)
         {
             ReadDataFromSO();
         }
+
+        objectName = objectToSpawn.tag;
 
         borders = borderContainer.GetComponentsInChildren<Border>();
         _minX = borders[0].gameObject.transform.position.x;
@@ -116,6 +116,8 @@ public class ObjectSpawner : MonoBehaviour
         toSpawn.GetComponent<Transform>().position = new Vector2(Random.Range(_minX, _maxX), _maxY);
         toSpawn.setLimits(_minX, _maxX, _minY, _maxY);
         toSpawn.setRelatives(player.gameObject, manager.gameObject);
+
+        CallManagerForSpeedData(objectName);
         toSpawn.setVerticalSpeed(verticalSpeed);
         toSpawn.GetComponent<RectTransform>().localScale = toSpawnLocalScale;
     }
@@ -123,7 +125,7 @@ public class ObjectSpawner : MonoBehaviour
     GameObject SpawnObject(GameObject toSpawnObject)
     {
         Vector2 setPoint = new Vector2(Random.Range(_minX, _maxX), _maxY);
-        verticalSpeed = speedDemandAction.Invoke();
+
         GameObject toSpawnObjectInstance = Instantiate(toSpawnObject, setPoint, Quaternion.identity);
         initializeObject(toSpawnObjectInstance.GetComponent<OperativeEntity>());
         PushToDeactivate(toSpawnObjectInstance);
@@ -137,17 +139,18 @@ public class ObjectSpawner : MonoBehaviour
         objectToDeactivate.SetActive(false);
     }
 
-    public void ManagerToSpawnerData(float verticalSpeed, float minX, float maxX, float minY, float maxY)
-    {
-        _minX = minX;
-        _maxX = maxX;
-        _minY = minY;
-        _maxY = maxY;
-        this.verticalSpeed = verticalSpeed;
-    }
+    //public void CallManagerForSpeedData(float verticalSpeed, float minX, float maxX, float minY, float maxY)
+    //{
+    //    _minX = minX;
+    //    _maxX = maxX;
+    //    _minY = minY;
+    //    _maxY = maxY;
+    //    this.verticalSpeed = verticalSpeed;
+    //}
 
-    public void ManagerToSpawnerData(float verticalSpeed)
+    public void CallManagerForSpeedData(string assignedObjTag)
     {
-        this.verticalSpeed = verticalSpeed;
+        //this.verticalSpeed = verticalSpeed;
+        verticalSpeed = MainManager.instance.CallForData(assignedObjTag);
     }
 }

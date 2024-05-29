@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class SpeedManager : MonoBehaviour
 {
-    void Start()
-    {
+    [SerializeField] private dataAssigner[] assigners;
 
-        GetComponent<ObjectSpawner>().speedDemandAction += SpeedAmount;
+    public float CallForData(string assignedObjName)
+    {
+        for (int i = 0; i < assigners.Length; ++i)
+        {
+            if (assignedObjName == assigners[i].assignerName)
+            {
+                return assigners[i].GetVerticalSpeed();
+            }
+        }
+        return 0f;
     }
 
    public float SpeedAmount()
     {
-        return 3f;
+        return GetComponent<dataAssigner>().GetVerticalSpeed();
     }
 }

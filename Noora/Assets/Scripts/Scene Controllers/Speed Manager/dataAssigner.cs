@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ObjectAssigner : MonoBehaviour
+public class dataAssigner : MonoBehaviour
 {
-    //[SerializeField] MultiSpawn spawnManager;
+    //[SerializeField] SpawnManager spawnManager;
 
-
+    [SerializeField] public string assignerName;
     [SerializeField] private float verticalSpeed, maxVerticalSpeed, minVerticalSpeed;
     [SerializeField] private float verticalSpeedRiseRate;
     [SerializeField] private float verticalSpeedFrameCounterLimit; // in frames
     [SerializeField] private int verticalSpeedFrameCounter = 0;
 
-    
+
     void FixedUpdate()
     {
         if (verticalSpeedFrameCounter >= verticalSpeedFrameCounterLimit)
         {
             verticalSpeed += verticalSpeedRiseRate; // += 0.05f
             verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
-            //spawnManager.ManagerToSpawnerData(verticalSpeed);
             verticalSpeedFrameCounter = 0;
         }
         else
         {
             verticalSpeedFrameCounter++;
         }
+    }
+
+    public float GetVerticalSpeed()
+    {
+        return verticalSpeed;
     }
 }
