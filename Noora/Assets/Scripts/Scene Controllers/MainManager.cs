@@ -19,10 +19,12 @@ public class MainManager : MonoBehaviour
     //[SerializeField] private GameObject sideLeft;
     [SerializeField] private GameObject sides;
 
-     SpawnManager spawnManager;
-     SpeedManager speedManager;
+    SpawnManager spawnManager;
+    SpeedManager speedManager;
+    UIManager uiManager;
+    VFXManager vFXManager;
+
     [SerializeField] GameObject UIText;
-    [SerializeField] GameObject UIGameplay;
 
     [SerializeField] GameObject[] borders;  // minXObj, maxXObj, minYObj, maxYObj
     private float minX, maxX, minY, maxY;
@@ -58,6 +60,9 @@ public class MainManager : MonoBehaviour
     {
         spawnManager = gameObject.GetComponent<SpawnManager>();
         speedManager = gameObject.GetComponent<SpeedManager>();
+        uiManager = gameObject.GetComponent<UIManager>();
+        vFXManager = gameObject.GetComponent<VFXManager>();
+
         //PlayerPrefs.SetInt("HighScore",0);
         highScoreText = UIText.GetComponentsInChildren<Transform>()[1].GetComponent<Text>();
         scoreText = UIText.GetComponentsInChildren<Transform>()[2].GetComponent<Text>();
@@ -93,22 +98,6 @@ public class MainManager : MonoBehaviour
         bgMaterial.mainTextureOffset += bgOffset * Time.deltaTime;
     }
 
-    private void FixedUpdate()
-    {
-        //if (verticalSpeedFrameCounter >= verticalSpeedFrameCounterLimit)
-        //{
-        //    verticalSpeed += verticalSpeedRiseRate; // += 0.05f
-        //    verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
-        //    spawnManager.CallManagerForSpeedData(verticalSpeed);
-        //    verticalSpeedFrameCounter = 0;
-        //}
-        //else
-        //{
-        //    verticalSpeedFrameCounter++;
-        //}
-
-    }
-
     public void CallToSpawner(GameObject spawnedObject)
     {
         spawnManager.PushToDeactivate(spawnedObject);
@@ -117,6 +106,11 @@ public class MainManager : MonoBehaviour
     public float CallForData(string assignedObjName)
     {
         return speedManager.CallForData(assignedObjName);
+    }
+
+    public void CallForTransition()
+    {
+
     }
 
 
@@ -134,9 +128,8 @@ public class MainManager : MonoBehaviour
     public void Lose()
     {
         PlayerPrefs.SetInt("HighScore", highScore);
-        //StartCoroutine(UIGameplay.GetComponent<SceneTransition>().Lose());
-        //StartCoroutine(DeployDelay());
-        
+        StartCoroutine(uiManager.Lose());
+
         PlayerPrefs.SetInt("HighScore", highScore);
     }
 

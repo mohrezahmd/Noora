@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneTransition : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    //public static SceneTransition instance;
+    //public static VFXManager instance;
     public static bool gameIsPaused = false;
     public MainManager manager;
     [SerializeField] protected GameObject pauseMenuUI, loseMenuUI, loseMenuContainer;
@@ -26,19 +26,6 @@ public class SceneTransition : MonoBehaviour
 
     protected float tmpAlpha;
     protected Color tmpColor;
-
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(instance);
-    //    }
-    //}
 
     protected virtual void Start()
     {
