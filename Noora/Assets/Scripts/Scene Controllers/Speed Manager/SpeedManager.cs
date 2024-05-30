@@ -5,19 +5,6 @@ using UnityEngine;
 public class SpeedManager : MonoBehaviour
 {
     [SerializeField] private dataAssigner[] assigners;
-    float sss;
-    DebugMiniPanel debuggerMini;
-
-    private void Start()
-    {
-        debuggerMini = GetComponent<DebugMiniPanel>();
-
-        //for (int i = 0; i < assigners.Length; ++i)
-
-        //{
-        //   sss =  assigners[i].GetVerticalSpeed();
-        //}
-    }
 
     public float CallForData(string assignedObjName)
     {
@@ -25,8 +12,7 @@ public class SpeedManager : MonoBehaviour
         {
             if (assignedObjName == assigners[i].assignerName)
             {
-                float tmpSpeed = assigners[i].GetVerticalSpeed();
-                return tmpSpeed;
+                return assigners[i].GetVerticalSpeed();
             }
         }
         return 0f;

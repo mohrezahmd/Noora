@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class OperativeEntity : MonoBehaviour
 {
@@ -15,21 +14,17 @@ public class OperativeEntity : MonoBehaviour
     protected MainManager mainManager;
     protected Rigidbody2D rgbd2D;
     public float _maxX, _minX, _minY, _maxY;
-    [SerializeField] protected float verticalSpeed = 2f;
+    [SerializeField] protected float verticalSpeed = 0f;
     [SerializeField] protected GameObject bordersContainer;
     protected Border[] borders;
 
     [SerializeField] protected bool flagIsActive = true;
     [SerializeField] protected bool flagToMove = true;
 
-
     protected virtual void Start()
-    {      
+    {
         rgbd2D = GetComponent<Rigidbody2D>();
-        if (gameObject.tag != "player")
-        {
-            verticalSpeed = MainManager.instance.CallToAssignerForData(gameObject.tag);
-        }
+
         if (bordersContainer != null)
         {
             borders = bordersContainer.GetComponentsInChildren<Border>();
@@ -44,12 +39,18 @@ public class OperativeEntity : MonoBehaviour
     {
         rgbd2D = GetComponent<Rigidbody2D>();
         rgbd2D.velocity = new Vector2(0, -verticalSpeed);
-
     }
 
-    protected virtual void FixedUpdate()
-    {
 
+
+    public virtual void CollideAsEffective()
+    {
+        Debug.Log("Collide As Effective: " + gameObject.name);
+    }
+
+    public virtual void CollideAsPassive()
+    {
+        Debug.Log("Collide As Passive: " + gameObject.name);
     }
 
     public virtual void setLimits(float minX, float maxX, float minY, float maxY)
@@ -66,11 +67,6 @@ public class OperativeEntity : MonoBehaviour
     public void setVerticalSpeed(float vSpeed)
     {
         verticalSpeed = vSpeed;
-    }
-
-    public float GetVerticalSpeed()
-    {
-        return verticalSpeed;
     }
 
     public void DontMove()
