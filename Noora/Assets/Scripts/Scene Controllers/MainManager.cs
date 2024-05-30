@@ -8,19 +8,19 @@ using UnityEngine.UI;
 public class MainManager : MonoBehaviour
 {
     public static MainManager instance;
-    //public static List<GameObject> allEntities;
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject ally;
 
     [SerializeField] private GameObject shrinker;
-    //[SerializeField] private GameObject sideRight;
-    //[SerializeField] private GameObject sideLeft;
+
     [SerializeField] private GameObject sides;
 
-     SpawnManager spawnManager;
-     SpeedManager speedManager;
+    SpawnManager spawnManager;
+    SpeedManager speedManager;
+    DebugManager debugManager;
+
     [SerializeField] GameObject UIText;
     [SerializeField] GameObject UIGameplay;
 
@@ -35,11 +35,6 @@ public class MainManager : MonoBehaviour
     [SerializeField] float backgroundSpeed = .5f;
     Material bgMaterial;
     Vector2 bgOffset;
-
-    //[SerializeField] private float verticalSpeed, maxVerticalSpeed, minVerticalSpeed;
-    //[SerializeField] private float verticalSpeedRiseRate;
-    //[SerializeField] private float verticalSpeedFrameCounterLimit; // in frames
-    //[SerializeField] private int verticalSpeedFrameCounter = 0;
 
     [SerializeField] int howManyTimesIn1Sec;
 
@@ -58,17 +53,15 @@ public class MainManager : MonoBehaviour
     {
         spawnManager = gameObject.GetComponent<SpawnManager>();
         speedManager = gameObject.GetComponent<SpeedManager>();
-        //PlayerPrefs.SetInt("HighScore",0);
+        debugManager = gameObject.GetComponent<DebugManager>();
+
         highScoreText = UIText.GetComponentsInChildren<Transform>()[1].GetComponent<Text>();
         scoreText = UIText.GetComponentsInChildren<Transform>()[2].GetComponent<Text>();
-        //errorText = UIText.GetComponentsInChildren<Transform>()[3].GetComponent<Text>();
 
         minX = borders[0].GetComponent<Border>().transform.position.x;
         maxX = borders[1].GetComponent<Border>().transform.position.x;
         minY = borders[2].GetComponent<Border>().transform.position.y;
         maxY = borders[3].GetComponent<Border>().transform.position.y;
-
-        //spawnManager.CallManagerForSpeedData(verticalSpeed);
 
         bgMaterial = BG.GetComponent<Renderer>().material;
         bgOffset = new Vector2(0f, backgroundSpeed);
@@ -82,31 +75,9 @@ public class MainManager : MonoBehaviour
 
     }
 
-    void s(float _backgroundSpeed)
-    {
-        bgOffset = new Vector2(0, _backgroundSpeed);
-
-    }
-
     private void Update()
     {
         bgMaterial.mainTextureOffset += bgOffset * Time.deltaTime;
-    }
-
-    private void FixedUpdate()
-    {
-        //if (verticalSpeedFrameCounter >= verticalSpeedFrameCounterLimit)
-        //{
-        //    verticalSpeed += verticalSpeedRiseRate; // += 0.05f
-        //    verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
-        //    spawnManager.CallManagerForSpeedData(verticalSpeed);
-        //    verticalSpeedFrameCounter = 0;
-        //}
-        //else
-        //{
-        //    verticalSpeedFrameCounter++;
-        //}
-
     }
 
     public void CallToSpawner(GameObject spawnedObject)
@@ -114,11 +85,16 @@ public class MainManager : MonoBehaviour
         spawnManager.PushToDeactivate(spawnedObject);
     }
 
-    public float CallForData(string assignedObjName)
+    public float CallToAssignerForData(string assignedObjName)
     {
-        return speedManager.CallForData(assignedObjName);
+        float tmpSpd = speedManager.CallForData(assignedObjName);
+        return tmpSpd;
     }
 
+    public void CallToDebugger(GameObject gameObject)
+    {
+        debugManager.createDebugPanelForEntity(gameObject);
+    }
 
     public void setScore(int newScore)
     {
@@ -136,15 +112,10 @@ public class MainManager : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", highScore);
         StartCoroutine(UIGameplay.GetComponent<SceneTransition>().Lose());
         //StartCoroutine(DeployDelay());
-        
+
         PlayerPrefs.SetInt("HighScore", highScore);
     }
 
-    IEnumerator DeployDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(0);
-    }
     public void StopBackground()
     {
         bgOffset = Vector2.zero;
