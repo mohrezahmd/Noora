@@ -47,11 +47,11 @@ MonoBehaviour:
   readDataFromSO: 0
   objectName: ally
   objectData: {fileID: 11400000, guid: 2964f99777f6bb04196c1b472feadf7a, type: 2}
-  howManyObjectsAtFirst: 10
+  howManyObjectsAtFirst: 1
   objectActivationDeltaTime: 1
   firstActivationTime: 0
   minSpawnRate: 0.5
-  maxSpawnRate: 8
+  maxSpawnRate: 7
   spawnRiseRate: 0.1
   spawnRateFrameCounterLimit: 300
   spawnRateFrameCounter: 0

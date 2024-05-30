@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ally : OperativeEntity
 {
@@ -25,8 +27,9 @@ public class ally : OperativeEntity
 
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.Start ();
         gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 34f);
         if (transform.parent.CompareTag("player"))
         {
