@@ -134,7 +134,7 @@ public class MainManager : MonoBehaviour
     public void Lose()
     {
         PlayerPrefs.SetInt("HighScore", highScore);
-        StartCoroutine(UIGameplay.GetComponent<SceneTransition>().Lose());
+        //StartCoroutine(UIGameplay.GetComponent<SceneTransition>().Lose());
         //StartCoroutine(DeployDelay());
         
         PlayerPrefs.SetInt("HighScore", highScore);

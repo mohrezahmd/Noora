@@ -23,6 +23,7 @@ public class OperativeEntity : MonoBehaviour
 
     protected virtual void Start()
     {
+        verticalSpeed = MainManager.instance.CallForData(gameObject.tag);
         rgbd2D = GetComponent<Rigidbody2D>();
 
         if (bordersContainer != null)
@@ -40,8 +41,6 @@ public class OperativeEntity : MonoBehaviour
         rgbd2D = GetComponent<Rigidbody2D>();
         rgbd2D.velocity = new Vector2(0, -verticalSpeed);
     }
-
-
 
     public virtual void CollideAsEffective()
     {

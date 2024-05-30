@@ -191,8 +191,7 @@ public class Player : OperativeEntity
     {
         DontMove();
         enemy.GetComponent<enemy>().DontMove();
-        //fail.Play();
-        AudioManager.instance.PlaySFX("Hit");
+        //AudioManager.instance.PlaySFX("Hit");
         StartCoroutine(justWait());
         manager.Lose();
     }
