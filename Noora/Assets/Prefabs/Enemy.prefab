@@ -4900,7 +4900,6 @@ MonoBehaviour:
   bordersContainer: {fileID: 0}
   flagIsActive: 0
   flagToMove: 1
-  value: {fileID: 737729683175138700, guid: ab8ea7ca5af9a6c4ba85dfaca1e9d563, type: 3}
 --- !u!50 &7992817524664306934
 Rigidbody2D:
   serializedVersion: 4

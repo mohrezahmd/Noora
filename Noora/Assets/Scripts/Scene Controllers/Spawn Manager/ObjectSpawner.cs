@@ -151,6 +151,6 @@ public class ObjectSpawner : MonoBehaviour
     public void CallManagerForSpeedData(string assignedObjTag)
     {
         //this.verticalSpeed = verticalSpeed;
-        verticalSpeed = MainManager.instance.CallToAssignerForData(assignedObjTag);
+        verticalSpeed = MainManager.instance.CallForData(assignedObjTag);
     }
 }

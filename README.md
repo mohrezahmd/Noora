@@ -1,1 +1,1 @@
-A simple casual game with space traveling theme. A light, called Noora, moves forward and player should control it with pushing right and left of the screen to go left and right. there are some enemy, ally and power ups that add variety to the game.
+This game is a subsequence of my last android game, Grow Die. It is some kind of a simple casual game with space traveling of a light, called Noora, theme, usable for android phones.
