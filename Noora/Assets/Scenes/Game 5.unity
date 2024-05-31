@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 100465327}
   - component: {fileID: 100465328}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: '-------   Audio    -------  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,15 +475,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100465326}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -15193.6}
+  m_LocalScale: {x: 160, y: 160, z: 160}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 775627223}
   - {fileID: 1616761957}
   - {fileID: 764265581}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 159690109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &100465328
 MonoBehaviour:
@@ -633,10 +633,6 @@ GameObject:
   m_Component:
   - component: {fileID: 159690109}
   - component: {fileID: 159690108}
-  - component: {fileID: 159690110}
-  - component: {fileID: 159690111}
-  - component: {fileID: 159690112}
-  - component: {fileID: 159690113}
   m_Layer: 5
   m_Name: Manager
   m_TagString: manager
@@ -690,6 +686,7 @@ RectTransform:
   - {fileID: 1109872621}
   - {fileID: 1525804293}
   - {fileID: 1433699421}
+  - {fileID: 100465327}
   m_Father: {fileID: 552804921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -697,84 +694,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &159690110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159690107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0938088f4acf4b046bb1c85dda65d474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectSpawners:
-  - {fileID: 2993510081098536216}
-  - {fileID: 330140784897786637}
-  - {fileID: 3606027362472505006}
-  player: {fileID: 2878173275918466678}
-  manager: {fileID: 159690107}
---- !u!114 &159690111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159690107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee97bc713d221940b3bc826fc67e936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assigners:
-  - {fileID: 274042508}
-  - {fileID: 1780343512}
-  - {fileID: 1338574681}
---- !u!114 &159690112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159690107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8baa9d9d71968d40ac0a8276e3d9a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 159690108}
-  pauseMenuUI: {fileID: 32069161}
-  loseMenuUI: {fileID: 140268656}
-  loseMenuContainer: {fileID: 439787803}
-  player: {fileID: 5132948641567709869}
-  BG: {fileID: 614680825}
-  globalEffects: {fileID: 1667149526}
-  gameplay: {fileID: 552804917}
-  playerLight: {fileID: 820122546}
-  fader: {fileID: 591233199}
-  secondsAfterLose: 0.8
-  manualSceneNum: 1
-  limitAlfa: 0
-  stepAlfa: 0.05
-  stepDelay: 0.1
-  funcDelay: 0.1
-  tmpScaleInitial: 0.1
-  tmpLimit: 0.8
-  tmpIncreament: 0.01
-  waitingTime: 0.01
---- !u!114 &159690113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159690107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c082003c827f645b8278503d04966a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &222178138
 GameObject:
   m_ObjectHideFlags: 0
@@ -13770,7 +13689,7 @@ GameObject:
   - component: {fileID: 1453694937}
   - component: {fileID: 1453694938}
   m_Layer: 5
-  m_Name: -----   Asigners   -----
+  m_Name: -----   Asigners   ------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14000,8 +13919,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1525804293}
+  - component: {fileID: 1525804294}
   m_Layer: 5
-  m_Name: ----  VFXManager   ----
+  m_Name: --------  VFX   --------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14029,6 +13949,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1525804294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525804292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c082003c827f645b8278503d04966a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1542470057
 GameObject:
   m_ObjectHideFlags: 0
@@ -31727,6 +31659,5 @@ SceneRoots:
   - {fileID: 1651770689}
   - {fileID: 224235742}
   - {fileID: 1564111335}
-  - {fileID: 100465327}
   - {fileID: 614680829}
   - {fileID: 552804921}

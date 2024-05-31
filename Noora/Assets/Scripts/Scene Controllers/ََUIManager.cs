@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
         //gameIsPaused = true;
         yield return new WaitForSeconds(secondsAfterLose);
         globalEffects.SetActive(true);
-        gameplay.SetActive(false);
+        //gameplay.SetActive(false);
         loseMenuUI.SetActive(true);
         AudioManager.instance.musicSource.gameObject.SetActive(false);
         AudioManager.instance.sfxSource.gameObject.SetActive(false);

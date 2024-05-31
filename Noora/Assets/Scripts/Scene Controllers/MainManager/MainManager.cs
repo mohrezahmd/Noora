@@ -15,14 +15,14 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject ally;
 
     [SerializeField] private GameObject shrinker;
-    //[SerializeField] private GameObject sideRight;
-    //[SerializeField] private GameObject sideLeft;
     [SerializeField] private GameObject sides;
 
     SpawnManager spawnManager;
     SpeedManager speedManager;
     UIManager uiManager;
     VFXManager vFXManager;
+
+    MainState mainManagerState;
 
     [SerializeField] GameObject UIText;
 
@@ -37,11 +37,6 @@ public class MainManager : MonoBehaviour
     [SerializeField] float backgroundSpeed = .5f;
     Material bgMaterial;
     Vector2 bgOffset;
-
-    //[SerializeField] private float verticalSpeed, maxVerticalSpeed, minVerticalSpeed;
-    //[SerializeField] private float verticalSpeedRiseRate;
-    //[SerializeField] private float verticalSpeedFrameCounterLimit; // in frames
-    //[SerializeField] private int verticalSpeedFrameCounter = 0;
 
     [SerializeField] int howManyTimesIn1Sec;
 
@@ -58,12 +53,11 @@ public class MainManager : MonoBehaviour
     }
     void Start()
     {
-        spawnManager = gameObject.GetComponent<SpawnManager>();
-        speedManager = gameObject.GetComponent<SpeedManager>();
-        uiManager = gameObject.GetComponent<UIManager>();
-        vFXManager = gameObject.GetComponent<VFXManager>();
+        spawnManager = gameObject.GetComponentInChildren<SpawnManager>();
+        speedManager = gameObject.GetComponentInChildren<SpeedManager>();
+        uiManager = gameObject.GetComponentInChildren<UIManager>();
+        vFXManager = gameObject.GetComponentInChildren<VFXManager>();
 
-        //PlayerPrefs.SetInt("HighScore",0);
         highScoreText = UIText.GetComponentsInChildren<Transform>()[1].GetComponent<Text>();
         scoreText = UIText.GetComponentsInChildren<Transform>()[2].GetComponent<Text>();
         //errorText = UIText.GetComponentsInChildren<Transform>()[3].GetComponent<Text>();
@@ -87,12 +81,6 @@ public class MainManager : MonoBehaviour
 
     }
 
-    void s(float _backgroundSpeed)
-    {
-        bgOffset = new Vector2(0, _backgroundSpeed);
-
-    }
-
     private void Update()
     {
         bgMaterial.mainTextureOffset += bgOffset * Time.deltaTime;
@@ -108,9 +96,9 @@ public class MainManager : MonoBehaviour
         return speedManager.CallForData(assignedObjName);
     }
 
-    public void CallForTransition()
+    public void CallForLose()
     {
-
+        spawnManager.gameObject.SetActive(false);
     }
 
 
@@ -125,6 +113,16 @@ public class MainManager : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    void SetState(MainState state)
+    {
+        mainManagerState = state;
+    }
+
+    void request()
+    {
+        mainManagerState.HandleRequest();
+    }
+
     public void Lose()
     {
         PlayerPrefs.SetInt("HighScore", highScore);
@@ -133,11 +131,6 @@ public class MainManager : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", highScore);
     }
 
-    IEnumerator DeployDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(0);
-    }
     public void StopBackground()
     {
         bgOffset = Vector2.zero;

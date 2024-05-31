@@ -37,7 +37,7 @@ public class PowerUp : OperativeEntity
     public override void setRelatives(GameObject myPlayer, GameObject myManager)
     {
         if (myPlayer.tag == "player") _player = myPlayer;
-        if (myManager.tag == "manager") _manager = myManager;
+        if (myManager.tag == "spawnManager") _manager = myManager;
     }
 
     // SPAWNED OBJECTS METHODS

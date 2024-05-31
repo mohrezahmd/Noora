@@ -29,7 +29,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject borderContainer;
     Border[] borders;
     [SerializeField] Player player;
-    [SerializeField] MainManager manager;
+    SpawnManager spawnManager;
     [SerializeField] Canvas parentCanvas;
     [SerializeField] private GameObject objectToSpawn;
 
@@ -41,6 +41,7 @@ public class ObjectSpawner : MonoBehaviour
             ReadDataFromSO();
         }
 
+        spawnManager = transform.GetComponentInParent<SpawnManager>();
         objectName = objectToSpawn.tag;
 
         borders = borderContainer.GetComponentsInChildren<Border>();
@@ -112,10 +113,10 @@ public class ObjectSpawner : MonoBehaviour
     private void initializeObject(OperativeEntity toSpawn)
     {
         toSpawn.GetComponent<Image>().SetNativeSize();
-        toSpawn.GetComponent<Transform>().SetParent(manager.gameObject.transform);
+        toSpawn.GetComponent<Transform>().SetParent(spawnManager.gameObject.transform);
         toSpawn.GetComponent<Transform>().position = new Vector2(Random.Range(_minX, _maxX), _maxY);
         toSpawn.setLimits(_minX, _maxX, _minY, _maxY);
-        toSpawn.setRelatives(player.gameObject, manager.gameObject);
+        toSpawn.setRelatives(player.gameObject, spawnManager.gameObject);
 
         CallManagerForSpeedData(objectName);
         toSpawn.setVerticalSpeed(verticalSpeed);
