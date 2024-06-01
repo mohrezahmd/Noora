@@ -21,8 +21,8 @@ public class MainManager : MonoBehaviour
     SpeedManager speedManager;
     UIManager uiManager;
     VFXManager vFXManager;
-
-    MainState mainManagerState;
+    StateManager stateManager;
+    AudioManager audioManager;
 
     [SerializeField] GameObject UIText;
 
@@ -55,8 +55,9 @@ public class MainManager : MonoBehaviour
     {
         spawnManager = gameObject.GetComponentInChildren<SpawnManager>();
         speedManager = gameObject.GetComponentInChildren<SpeedManager>();
-        uiManager = gameObject.GetComponentInChildren<UIManager>();
-        vFXManager = gameObject.GetComponentInChildren<VFXManager>();
+        uiManager    = gameObject.GetComponentInChildren<UIManager>();
+        vFXManager   = gameObject.GetComponentInChildren<VFXManager>();
+        audioManager = gameObject.GetComponentInChildren<AudioManager>(); 
 
         highScoreText = UIText.GetComponentsInChildren<Transform>()[1].GetComponent<Text>();
         scoreText = UIText.GetComponentsInChildren<Transform>()[2].GetComponent<Text>();
@@ -96,12 +97,6 @@ public class MainManager : MonoBehaviour
         return speedManager.CallForData(assignedObjName);
     }
 
-    public void CallForLose()
-    {
-        spawnManager.gameObject.SetActive(false);
-    }
-
-
     public void setScore(int newScore)
     {
         score += newScore;
@@ -113,22 +108,13 @@ public class MainManager : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    void SetState(MainState state)
-    {
-        mainManagerState = state;
-    }
-
-    void request()
-    {
-        mainManagerState.HandleRequest();
-    }
-
     public void Lose()
     {
+        //StartCoroutine(uiManager.Lose());
+        PlayerPrefs.SetInt("HighScore", highScore);
         PlayerPrefs.SetInt("HighScore", highScore);
         StartCoroutine(uiManager.Lose());
 
-        PlayerPrefs.SetInt("HighScore", highScore);
     }
 
     public void StopBackground()

@@ -8,8 +8,6 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
-    [SerializeField] private AudioSource soundFXObject;
-
     private void Awake()
     {
         if(instance == null)
@@ -88,24 +86,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
-    {
-        // Spawn in gameobject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+    //public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    //{
+    //    // Spawn in gameobject
+    //    AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
 
-        // assign the audio clip
-        audioSource.clip = audioClip;
+    //    // assign the audio clip
+    //    audioSource.clip = audioClip;
 
-        // assign volume
-        audioSource.volume = volume;
+    //    // assign volume
+    //    audioSource.volume = volume;
 
-        // play sound
-        audioSource.Play();
+    //    // play sound
+    //    audioSource.Play();
 
-        // get length of sound fx clip
-        float clipLength = audioSource.clip.length;
+    //    // get length of sound fx clip
+    //    float clipLength = audioSource.clip.length;
 
-        // destroy the clip after it is done playing
-        Destroy(audioSource.gameObject, clipLength );
-    }
+    //    // destroy the clip after it is done playing
+    //    Destroy(audioSource.gameObject, clipLength);
+    //}
 }

@@ -16,19 +16,21 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] protected GameObject BG;
     [SerializeField] protected GameObject globalEffects;
-    [SerializeField] protected GameObject gameplay;
     [SerializeField] protected GameObject playerLight;
     [SerializeField] protected GameObject fader;
     [SerializeField] protected float secondsAfterLose = .2f;
 
     [SerializeField] protected int manualSceneNum = 0;
-    //public UnityEvent unityEvent;
 
     protected float tmpAlpha;
     protected Color tmpColor;
 
+    [SerializeField] protected GameObject spawnManager;
+    [SerializeField] protected VFXManager vFXManager;
+
     protected virtual void Start()
     {
+        //vFXManager = GetComponent<VFXManager>();
         switch (manualSceneNum)
         {
             case 0:
@@ -39,7 +41,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
 
-       StartCoroutine(FadeIn());
+        StartCoroutine(vFXManager.FadeIn());
     }
 
     // Buttons{-------------------------||||||
@@ -50,7 +52,8 @@ public class UIManager : MonoBehaviour
         gameIsPaused = false;
         Time.timeScale = 1f;
         playerLight.SetActive(true);
-        LightOn(player);
+        vFXManager.LightOn(player);
+
     }
 
     public void Pause()
@@ -84,51 +87,23 @@ public class UIManager : MonoBehaviour
 
     public virtual IEnumerator Lose()
     {
+        Debug.Log(5);
+
         //gameIsPaused = true;
         yield return new WaitForSeconds(secondsAfterLose);
+        Debug.Log(6);
+
         globalEffects.SetActive(true);
-        //gameplay.SetActive(false);
+        spawnManager.SetActive(false);
         loseMenuUI.SetActive(true);
         AudioManager.instance.musicSource.gameObject.SetActive(false);
         AudioManager.instance.sfxSource.gameObject.SetActive(false);
 
-        StartCoroutine(ScaleOut(loseMenuContainer));
+        StartCoroutine(vFXManager.ScaleOut(loseMenuContainer));
         //Time.timeScale = 0f;
-    }
+        Debug.Log(7);
 
 
-    void LightOff(OperativeEntity _ally)
-    {
-        ally[] allies;
-        if (_ally != null)
-        {
-            if (_ally.GetComponentsInChildren<ally>() != null)
-            {
-                allies = _ally.GetComponentsInChildren<ally>();
-
-                for (int i = 0; i < allies.Length; i++)
-                {
-                    allies[i].myLight.gameObject.SetActive(false);
-                }
-            }
-        }
-    }
-
-    void LightOn(OperativeEntity _ally)
-    {
-        ally[] allies;
-        if (_ally != null)
-        {
-            if (_ally.GetComponentsInChildren<ally>() != null)
-            {
-                allies = _ally.GetComponentsInChildren<ally>();
-
-                for (int i = 0; i < allies.Length; i++)
-                {
-                    allies[i].myLight.gameObject.SetActive(true);
-                }
-            }
-        }
     }
 
     protected void BeforeEnteringScene(int sceneNum)
@@ -145,74 +120,6 @@ public class UIManager : MonoBehaviour
 
         AudioManager.instance.PlayMusic(sceneName);
     }
-
-
-
-
-    // Visual Effects : --------------+++++++++++++++++++++++++++++++
-
-    [Header("Fade In")]
-    [SerializeField] float limitAlfa = 0f;
-    [SerializeField] float stepAlfa = .05f;
-    [SerializeField] float stepDelay = .1f;
-    [SerializeField] float funcDelay = .1f;
-    public virtual IEnumerator FadeIn()
-    {
-        fader.SetActive(true);
-        tmpColor.a = 1;
-        Color c = fader.GetComponent<Image>().color;
-        for (float alpha = 1f; alpha > limitAlfa; alpha -= stepAlfa)
-        {
-            c.a = alpha;
-            fader.GetComponent<Image>().color = c;
-            yield return new WaitForSeconds(stepDelay);
-        }
-        c.a = 0;
-        fader.GetComponent<Image>().color = c;
-        fader.SetActive(false);
-        yield return new WaitForSeconds(funcDelay);
-    }
-
-    public virtual IEnumerator FadeOut(int sceneNum)
-    {
-        fader.SetActive(true);
-        tmpColor.a = 0;
-        Color c = fader.GetComponent<Image>().color;
-
-        for (float alpha = 0f; alpha <= 1f; alpha += 0.05f)
-        {
-            tmpColor.a = alpha;
-            fader.GetComponent<Image>().color = tmpColor;
-            yield return new WaitForSeconds(.1f);
-        }
-        c.a = 1;
-        fader.GetComponent<Image>().color = c;
-
-    }
-
-    [Header("Scale Out")]
-    [SerializeField] float tmpScaleInitial = .1f;
-    [SerializeField] float tmpLimit = 1f;
-    [SerializeField] float tmpIncreament = 0.05f;
-    [SerializeField] float waitingTime = 0.05f;
-    public virtual IEnumerator ScaleOut(GameObject toScaleObj)
-    {
-        //float tmpScale = .1f;
-        Vector3 c = new Vector3(tmpScaleInitial, tmpScaleInitial, tmpScaleInitial);
-
-        toScaleObj.transform.localScale = c;
-
-        for (float tmpScale = tmpScaleInitial; tmpScale < tmpLimit; tmpScale += tmpIncreament)
-        {
-            c = new Vector3(tmpScale, tmpScale, tmpScale);
-            toScaleObj.transform.localScale = c;
-
-            yield return new WaitForSeconds(waitingTime);
-        }
-    }
-    // Visual Effects : --------------+++++++++++++++++++++++++++++++
-
-
 
 
 }

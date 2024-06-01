@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface MainState 
+public interface State
 {
-    public void HandleRequest();
+    public IEnumerator HandleRequest(State state);
+
 }
