@@ -5,15 +5,16 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public Sound[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource;
+   // Sound[] musicSounds, sfxSounds;
+    [SerializeField] AudioSource musicSource, sfxSource;
+    [SerializeField] AudioClipFiles musicClipFiles, sfxClipFiles;
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             instance.musicSource.Play();
             instance.sfxSource.Play();
         }
@@ -25,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string songName)
     {
-        Sound s = Array.Find(musicSounds, x => x.name == songName);
+        Sound s = Array.Find<Sound>(musicClipFiles.clips, x => x.name == songName);
 
         if(s == null)
         {
@@ -41,7 +42,7 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(int songIndex)
     {
         Sound s = new Sound();
-        s = musicSounds[songIndex];
+        s = musicClipFiles.clips[songIndex];
 
         if (s == null)
         {
@@ -57,13 +58,13 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(string sFXName)
     {
         sfxSource.pitch = 1;
-        Sound s = Array.Find(sfxSounds, x => x.name == sFXName);
+        Sound s = Array.Find(sfxClipFiles.clips, x => x.name == sFXName);
 
         if(s == null)
         {
             Debug.Log("sfx not found");
         }
-        else
+        else if(sfxSource.pitch < 1.5)
         {
             sfxSource.PlayOneShot(s.clip);
         }
@@ -71,13 +72,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string sFXName, float pitch)
     {
-        Sound s = Array.Find(sfxSounds, x => x.name == sFXName);
+        Sound s = Array.Find(sfxClipFiles.clips, x => x.name == sFXName);
 
         if (s == null)
         {
             Debug.Log("sfx not found");
         }
-        else
+        else if (sfxSource.pitch < 1.5)
+
         {
             float tmpPitch = sfxSource.pitch;
             sfxSource.pitch = pitch;
@@ -86,24 +88,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
-    //{
-    //    // Spawn in gameobject
-    //    AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+    public void activateAudioObject(bool isActive)
+    {
+       musicSource.gameObject.SetActive(isActive);
+       sfxSource.gameObject.SetActive(isActive);
+    }
 
-    //    // assign the audio clip
-    //    audioSource.clip = audioClip;
-
-    //    // assign volume
-    //    audioSource.volume = volume;
-
-    //    // play sound
-    //    audioSource.Play();
-
-    //    // get length of sound fx clip
-    //    float clipLength = audioSource.clip.length;
-
-    //    // destroy the clip after it is done playing
-    //    Destroy(audioSource.gameObject, clipLength);
-    //}
 }

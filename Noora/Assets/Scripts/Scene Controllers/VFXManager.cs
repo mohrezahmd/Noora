@@ -6,16 +6,6 @@ using UnityEngine.UI;
 
 public class VFXManager : MonoBehaviour
 {
-    //public static bool gameIsPaused = false;
-    //public MainManager manager;
-    //[SerializeField] protected GameObject pauseMenuUI, loseMenuUI, loseMenuContainer;
-    //[SerializeField] protected Player player;
-
-    //[SerializeField] protected GameObject BG;
-    //[SerializeField] protected GameObject globalEffects;
-    //[SerializeField] protected GameObject gameplay;
-    //[SerializeField] protected GameObject playerLight;
-    [SerializeField] protected GameObject fader;
     [SerializeField] protected float secondsAfterLose = .2f;
 
     [SerializeField] protected int manualSceneNum = 0;
@@ -25,29 +15,33 @@ public class VFXManager : MonoBehaviour
 
 
     [Header("Fade In")]
-    [SerializeField] float limitAlfa = 0f;
-    [SerializeField] float stepAlfa = .05f;
-    [SerializeField] float stepDelay = .1f;
-    [SerializeField] float funcDelay = .1f;
+    [SerializeField] float fadeInDuration = 1.0f;
 
-    public IEnumerator FadeIn()
+    public float mixValue;
+
+    public Color colourMix;
+    public Color colourA;
+    public Color colourB;
+
+    public float lerpedValue;
+
+    public IEnumerator FadeIn(float start, float end, GameObject fader)
     {
         fader.SetActive(true);
-        tmpColor.a = 1;
-        Color c = fader.GetComponent<Image>().color;
-        for (float alpha = 1f; alpha > limitAlfa; alpha -= stepAlfa)
+        float timeElapsed = 0;
+
+        while (timeElapsed <= fadeInDuration)
         {
-            c.a = alpha;
-            fader.GetComponent<Image>().color = c;
-            yield return new WaitForSeconds(stepDelay);
+            float t = timeElapsed / fadeInDuration;
+            fader.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(start, end, t));
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
-        c.a = 0;
-        fader.GetComponent<Image>().color = c;
+        fader.GetComponent<CanvasRenderer>().SetAlpha(end);
         fader.SetActive(false);
-        yield return new WaitForSeconds(funcDelay);
     }
 
-    public IEnumerator FadeOut(int sceneNum)
+    public IEnumerator FadeOut(int sceneNum, GameObject fader)
     {
         fader.SetActive(true);
         tmpColor.a = 0;
@@ -66,25 +60,35 @@ public class VFXManager : MonoBehaviour
 
 
     [Header("Scale Out")]
-    [SerializeField] float tmpScaleInitial = .1f;
-    [SerializeField] float tmpLimit = 1f;
-    [SerializeField] float tmpIncreament = 0.05f;
-    [SerializeField] float waitingTime = 0.05f;
+    [SerializeField] float scaleOutDuration = 1f;
+    [SerializeField] float scale1num, scale2num;
 
     public IEnumerator ScaleOut(GameObject toScaleObj)
     {
-        //float tmpScale = .1f;
-        Vector3 c = new Vector3(tmpScaleInitial, tmpScaleInitial, tmpScaleInitial);
 
-        toScaleObj.transform.localScale = c;
+        Vector3 scale1 = new Vector3(scale1num, scale1num, scale1num);
+        Vector3 scale2 = new Vector3(scale2num, scale2num, scale2num);
 
-        for (float tmpScale = tmpScaleInitial; tmpScale < tmpLimit; tmpScale += tmpIncreament)
+        toScaleObj.SetActive(true);
+        float timeElapsed = 0;
+
+        toScaleObj.transform.localScale = scale1;
+
+        while(timeElapsed < scaleOutDuration)
         {
-            c = new Vector3(tmpScale, tmpScale, tmpScale);
-            toScaleObj.transform.localScale = c;
+            float t = timeElapsed/scaleOutDuration;
+            toScaleObj.transform.localScale = Vector3.Lerp(scale1, scale2, t);
+            timeElapsed += Time.deltaTime;
 
-            yield return new WaitForSeconds(waitingTime);
+            yield return null;
+            Debug.Log("timeElapsed: " + timeElapsed);
+            Debug.Log("scale duration: " + scaleOutDuration);
+            Debug.Log("local scale of lerp: " + toScaleObj.transform.localScale);
         }
+            Debug.Log("2. local scale of lerp: " + toScaleObj.transform.localScale);
+
+        toScaleObj.transform.localScale = scale2;
+            Debug.Log("3. local scale of lerp: " + toScaleObj.transform.localScale);
     }
 
     public void LightOff(OperativeEntity _ally)

@@ -22,7 +22,9 @@ public class Player : OperativeEntity
     bool leftArrowKey;
     bool rightArrowKey;
 
-
+    float pitchValue = 0f;
+    int pitchCounter = 0;
+    [SerializeField] float pitchValueDelta;
 
     protected override void Start()
     {
@@ -138,7 +140,7 @@ public class Player : OperativeEntity
         }
         else if (collision.CompareTag("Side"))
         {
-            PlayerCollidedWithSide(collision);
+           StartCoroutine( PlayerCollidedWithSide(collision));
         }
     }
     public void PlayerCollidedWithPUP()
@@ -148,11 +150,11 @@ public class Player : OperativeEntity
         StartCoroutine(RemainEffect(sideRemainShrinkerTime));
     }
 
-    public void PlayerCollidedWithSide(GameObject collision)
+    public IEnumerator PlayerCollidedWithSide(GameObject collision)
     {
-        manager.setScore(10);
-        AudioManager.instance.PlaySFX("PowerUp", 2.3f);
-        //sidesAudio.Play();
+        MainManager.instance.setScore(10);
+        yield return new WaitForSeconds(.1f);
+        AudioManager.instance.PlaySFX("PowerUp");
 
     }
 
@@ -176,26 +178,23 @@ public class Player : OperativeEntity
             allyToBeChild.transform.SetParent(gameObject.transform);
         }
 
-
         allyToBeChild.GetComponent<OperativeEntity>().DontMove();
         allyToBeChild.GetComponent<ally>().GetComponent<Image>().color = new Color(255, 255, 255, 100);
         manager.setScore(allyScore);
         allyToBeChild.gameObject.tag = "player";
 
         allyToBeChild.GetComponent<ally>().activateTheLight();
-        //audioSource.Play();
+
         AudioManager.instance.PlaySFX("CollectAlly");
+
     }
 
     public void playerCollidedWithEnemy(GameObject enemy)
     {
         DontMove();
         enemy.GetComponent<enemy>().DontMove();
-        //AudioManager.instance.PlaySFX("Hit");
-
-        Debug.Log(1);
+        AudioManager.instance.PlaySFX("Hit");
         manager.Lose();
-        Debug.Log(2);
     }
 
     IEnumerator justWait()

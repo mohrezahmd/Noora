@@ -14,12 +14,12 @@ public class UIManager : MonoBehaviour
 
     //private float defaultSpeed;
 
-    [SerializeField] protected GameObject BG;
     [SerializeField] protected GameObject globalEffects;
     [SerializeField] protected GameObject playerLight;
     [SerializeField] protected GameObject fader;
     [SerializeField] protected float secondsAfterLose = .2f;
-
+    [SerializeField] protected GameObject particleS;
+    [SerializeField] protected GameObject sides;
     [SerializeField] protected int manualSceneNum = 0;
 
     protected float tmpAlpha;
@@ -41,7 +41,8 @@ public class UIManager : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(vFXManager.FadeIn());
+        //fader.SetActive(true);
+        StartCoroutine(vFXManager.FadeIn(1, 0, fader));
     }
 
     // Buttons{-------------------------||||||
@@ -62,13 +63,13 @@ public class UIManager : MonoBehaviour
         globalEffects.SetActive(true);
         gameIsPaused = true;
         playerLight.SetActive(false);
+        vFXManager.LightOff(player);
         Time.timeScale = .01f;
     }
 
     public void Home()
     {
         Time.timeScale = 1f;
-        //SceneManager.LoadScene(0);
         BeforeEnteringScene(0);
     }
 
@@ -79,7 +80,6 @@ public class UIManager : MonoBehaviour
 
     public void Game()
     {
-        //SceneManager.LoadScene(1);
         BeforeEnteringScene(1);
     }
     // Buttons \\ }----------------------||||||
@@ -87,37 +87,30 @@ public class UIManager : MonoBehaviour
 
     public virtual IEnumerator Lose()
     {
-        Debug.Log(5);
-
-        //gameIsPaused = true;
         yield return new WaitForSeconds(secondsAfterLose);
-        Debug.Log(6);
+
+        particleS.SetActive(false);
+        spawnManager.SetActive(false);
+        player.gameObject.SetActive(false);
 
         globalEffects.SetActive(true);
-        spawnManager.SetActive(false);
         loseMenuUI.SetActive(true);
-        AudioManager.instance.musicSource.gameObject.SetActive(false);
-        AudioManager.instance.sfxSource.gameObject.SetActive(false);
+        MainManager.instance.StopBackground();
+        sides.SetActive(false);
 
-        StartCoroutine(vFXManager.ScaleOut(loseMenuContainer));
-        //Time.timeScale = 0f;
-        Debug.Log(7);
-
+        //StartCoroutine(vFXManager.ScaleOut(loseMenuContainer));
 
     }
 
     protected void BeforeEnteringScene(int sceneNum)
     {
-        AudioManager.instance.musicSource.gameObject.SetActive(false);
-        AudioManager.instance.sfxSource.gameObject.SetActive(false);
+        AudioManager.instance.activateAudioObject(false);
         SceneManager.LoadScene(sceneNum);
     }
 
     protected virtual void AfterEnteringScene(string sceneName)
     {
-        AudioManager.instance.musicSource.gameObject.SetActive(true);
-        AudioManager.instance.sfxSource.gameObject.SetActive(true);
-
+        AudioManager.instance.activateAudioObject(true);
         AudioManager.instance.PlayMusic(sceneName);
     }
 

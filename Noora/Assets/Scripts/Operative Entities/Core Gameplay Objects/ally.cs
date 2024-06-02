@@ -83,7 +83,7 @@ public class ally : OperativeEntity
         }
         else if (collision.CompareTag("player") && selfCollisionCounter == 1)
         {
-            mainManager.setScore(10);
+            MainManager.instance.setScore(10);
             //player.PlayerMyAudio();
             selfCollisionCounter++;
         }
@@ -91,7 +91,7 @@ public class ally : OperativeEntity
         {
             //player.PlayerMyAudio();
 
-            player.PlayerCollidedWithSide(collision);
+            StartCoroutine(player.PlayerCollidedWithSide(collision));
         }
 
     }
