@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideCollider : PowerUp
+public class SideCollider : MonoBehaviour //PowerUp
 {
-
-    protected override void OnEnable()
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] GameObject player, manager;
+    protected void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
         //rgbd2D = GetComponent<Rigidbody2D>();
         //rgbd2D.velocity = new Vector2(0, -verticalSpeed);
     }
@@ -15,7 +17,13 @@ public class SideCollider : PowerUp
     {
         if(collision.gameObject.tag == "player")
         {
-           
+            //AudioManager.instance.PlaySFX("CollectAlly");
+            //if(!(audioSource.pitch < 2f)) audioSource.pitch = 1.5f;
+            audioSource.Play();
+            Debug.Log("1.pitch: " + audioSource.pitch);
+
         }
     }
+
+
 }

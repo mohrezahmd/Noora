@@ -13,7 +13,7 @@ public class HomeScene : MonoBehaviour
     [SerializeField] 
 
     public Button startButton;
-    public TotalData totalData;
+    public ErrorData totalData;
 
     [SerializeField] GameObject BG;
     [SerializeField] float backgroundSpeed = .5f;

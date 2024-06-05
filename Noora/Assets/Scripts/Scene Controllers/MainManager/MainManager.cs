@@ -73,8 +73,8 @@ public class MainManager : MonoBehaviour
         bgMaterial = BG.GetComponent<Renderer>().material;
         bgOffset = new Vector2(0f, backgroundSpeed);
 
-        sides.GetComponentsInChildren<SideCollider>()[0].setRelatives(player, gameObject);
-        sides.GetComponentsInChildren<SideCollider>()[1].setRelatives(player, gameObject);
+        //sides.GetComponentsInChildren<SideCollider>()[0].setRelatives(player, gameObject);
+        //sides.GetComponentsInChildren<SideCollider>()[1].setRelatives(player, gameObject);
 
         highScore = PlayerPrefs.GetInt("HighScore");
         highScoreText.text = highScore.ToString();

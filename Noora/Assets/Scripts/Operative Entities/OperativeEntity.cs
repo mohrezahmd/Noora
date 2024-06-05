@@ -42,16 +42,6 @@ public class OperativeEntity : MonoBehaviour
         rgbd2D.velocity = new Vector2(0, -verticalSpeed);
     }
 
-    public virtual void CollideAsEffective()
-    {
-        Debug.Log("Collide As Effective: " + gameObject.name);
-    }
-
-    public virtual void CollideAsPassive()
-    {
-        Debug.Log("Collide As Passive: " + gameObject.name);
-    }
-
     public virtual void setLimits(float minX, float maxX, float minY, float maxY)
     {
         _minX = minX; _maxX = maxX; _minY = minY; _maxY = maxY;

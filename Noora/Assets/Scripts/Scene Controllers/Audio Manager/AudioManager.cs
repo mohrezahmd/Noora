@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string songName)
     {
-        Sound s = Array.Find<Sound>(musicClipFiles.clips, x => x.name == songName);
+        Sound s = Array.Find(musicClipFiles.clips, x => x.name == songName);
 
         if(s == null)
         {
@@ -64,9 +64,12 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log("sfx not found");
         }
-        else if(sfxSource.pitch < 1.5)
+        else if(sfxSource.pitch < 1.5f)
         {
             sfxSource.PlayOneShot(s.clip);
+        }else if(sfxSource.pitch >= 1.5)
+        {
+            sfxSource.pitch = 1.5f;
         }
     }
 
@@ -78,7 +81,7 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log("sfx not found");
         }
-        else if (sfxSource.pitch < 1.5)
+        else if (sfxSource.pitch < .2f)
 
         {
             float tmpPitch = sfxSource.pitch;
@@ -86,6 +89,11 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
 
         }
+        else if (sfxSource.pitch >= 1.5)
+        {
+            sfxSource.pitch = 1.5f;
+        }
+        Debug.Log("1.pitch2: " + sfxSource.pitch);
     }
 
     public void activateAudioObject(bool isActive)

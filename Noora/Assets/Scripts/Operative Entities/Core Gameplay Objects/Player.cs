@@ -154,7 +154,7 @@ public class Player : OperativeEntity
     {
         MainManager.instance.setScore(10);
         yield return new WaitForSeconds(.1f);
-        AudioManager.instance.PlaySFX("PowerUp");
+        //AudioManager.instance.PlaySFX("PowerUp");
 
     }
 
