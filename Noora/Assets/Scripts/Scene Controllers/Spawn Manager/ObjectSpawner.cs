@@ -20,7 +20,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float spawnRateFrameCounterLimit;
     [SerializeField] float spawnRateFrameCounter = 0;
 
-    public float _minX, _maxX, _minY, _maxY;
+    /*public*/ float _minX, _maxX, _minY, _maxY;
     [SerializeField] private float verticalSpeed;
     [SerializeField] private Vector3 toSpawnLocalScale;
 
