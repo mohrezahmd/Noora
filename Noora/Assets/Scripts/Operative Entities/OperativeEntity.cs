@@ -19,7 +19,7 @@ public class OperativeEntity : MonoBehaviour
     protected Border[] borders;
 
     [SerializeField] protected bool flagIsActive = true;
-    [SerializeField] protected bool flagToMove = true;
+    [SerializeField] protected bool flagToMoveGlobal = true;
 
     protected virtual void Start()
     {
@@ -60,7 +60,8 @@ public class OperativeEntity : MonoBehaviour
 
     public void DontMove()
     {
-        flagToMove = false;
+        Debug.Log(" 3. don't move: " + name);
+        flagToMoveGlobal = false;
         SetSpeed(0, 0);
     }
 

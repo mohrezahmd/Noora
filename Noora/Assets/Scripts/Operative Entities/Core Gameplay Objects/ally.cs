@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
+public enum borderSide { Left, Right, Above, Bellow, None }
 
 public class ally : OperativeEntity
 {
     int selfCollisionCounter = 0;
     bool notReachedBorder = true;
+    public int allyID = 0;
 
     [SerializeField] public GameObject myLight;
+
+    public borderSide borderSide;
 
     protected override void Start()
     {
         base.Start();
         rgbd2D.gravityScale = 0;
+        borderSide = borderSide.None;
     }
 
     protected override void OnEnable()
@@ -47,6 +53,7 @@ public class ally : OperativeEntity
 
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, _minX, _maxX), transform.position.y);
 
+
         if (transform.position.y < _minY)
         {
             MainManager.instance.CallToSpawner(gameObject);
@@ -73,6 +80,7 @@ public class ally : OperativeEntity
     {
         if (collision.CompareTag("enemy") && transform.parent != null && transform.parent.CompareTag("player"))
         {
+            Debug.Log("1. enemy collided" + name);
             player.playerCollidedWithEnemy(collision);
         }
         else if (collision.CompareTag("ally") && transform.parent != null && transform.parent.CompareTag("player"))

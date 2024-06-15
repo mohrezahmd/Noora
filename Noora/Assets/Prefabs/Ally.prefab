@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.739, g: 0.739, b: 0.739, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -166,7 +166,9 @@ MonoBehaviour:
   bordersContainer: {fileID: 0}
   flagIsActive: 1
   flagToMove: 1
+  allyID: 0
   myLight: {fileID: 7596822241223239230}
+  borderSide: 0
 --- !u!1001 &6714762693416885305
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject ally;
 
+    public int allyID = 0;
+
     [SerializeField] private GameObject shrinker;
     [SerializeField] private GameObject sides;
 
@@ -23,6 +25,7 @@ public class MainManager : MonoBehaviour
     VFXManager vFXManager;
     StateManager stateManager;
     AudioManager audioManager;
+
 
     [SerializeField] GameObject UIText;
 

@@ -598,6 +598,7 @@ MonoBehaviour:
   player: {fileID: 2878173275918466678}
   enemy: {fileID: 7992817524664306893, guid: b34fcb0dd069c9a48b95ab072fd1d3fe, type: 3}
   ally: {fileID: 3254418871265301379, guid: f2148cc564da7394fa94a78bb0970678, type: 3}
+  allyID: 0
   shrinker: {fileID: 154022712967740975, guid: bb039736835864f40810a2b7c9ebd7c0, type: 3}
   sides: {fileID: 1557219058}
   UIText: {fileID: 738664266}
@@ -7252,7 +7253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -26, y: 0}
+  m_AnchoredPosition: {x: -26.000061, y: 0}
   m_SizeDelta: {x: 56, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &831447627
@@ -7378,8 +7379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 831447632}
-  player: {fileID: 0}
-  manager: {fileID: 0}
+  player: {fileID: 2878173275918466678}
+  manager: {fileID: 159690107}
 --- !u!82 &831447632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7392,7 +7393,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0aedf25d01f15824a9102d37e3461e30, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13714,7 +13715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26, y: 0}
+  m_AnchoredPosition: {x: 26.000061, y: 0}
   m_SizeDelta: {x: 56, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684542806
@@ -13854,7 +13855,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0aedf25d01f15824a9102d37e3461e30, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -24079,7 +24080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593764117118597177, guid: 341dd3d8398b11c4cbd903164e8ff009, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25466,6 +25467,14 @@ PrefabInstance:
       propertyPath: borderContainer
       value: 
       objectReference: {fileID: 559934609538851808}
+    - target: {fileID: 7659550272862921349, guid: fcd0e4cb78382a540ac6d1fd84707f71, type: 3}
+      propertyPath: firstActivationTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659550272862921349, guid: fcd0e4cb78382a540ac6d1fd84707f71, type: 3}
+      propertyPath: objectActivationDeltaTime
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25683,7 +25692,24 @@ MonoBehaviour:
   isShrinkOn: 0
   sides: {fileID: 1557219058}
   sideRemainShrinkerTime: 6
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   pitchValueDelta: 0.1
+  leftArrowEnable: 0
+  rightArrowEnable: 0
 --- !u!224 &5900132287534578374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25701,7 +25727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -45, y: 0}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6000874849204100990
@@ -26280,7 +26306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1079200868557554463, guid: 4ede25c2a6032c141b2fcf4e93474e4c, type: 3}
       propertyPath: m_Volume
-      value: 0.162
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1106336668047867612, guid: 4ede25c2a6032c141b2fcf4e93474e4c, type: 3}
       propertyPath: sfxClipFiles

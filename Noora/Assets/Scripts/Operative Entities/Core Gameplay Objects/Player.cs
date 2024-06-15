@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : OperativeEntity
@@ -22,33 +24,54 @@ public class Player : OperativeEntity
     bool leftArrowKey;
     bool rightArrowKey;
 
+    public UnityEvent unityEvent;
+
+    GameObject leftAlly, rightAlly, aboveAlly, bellowAlly;
+
     float pitchValue = 0f;
     int pitchCounter = 0;
     [SerializeField] float pitchValueDelta;
+    bool flagToMove = false;
 
     protected override void Start()
     {
         base.Start();
         setVerticalSpeed(0);
 
+        leftAlly = null;
+        rightAlly = null;
+        aboveAlly = null;
+        bellowAlly = null;
     }
 
+    public bool leftArrowEnable = true;
+    public bool rightArrowEnable = true;
+
     private void Update()
+    {
+        BiggerMovement();
+       
+    }
+
+
+    protected override void OnEnable() { /*base.OnEnable();*/ }
+
+    public void BiggerMovement()
     {
         leftMouseBtn = Input.GetKey(KeyCode.Mouse0);
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > 1f) leftMouseBtn = false;
 
         leftArrowKey = Input.GetKey(KeyCode.LeftArrow);
+
         rightArrowKey = Input.GetKey(KeyCode.RightArrow);
-        //Debug.Log(11);
+
         if (flagToMove && (leftArrowKey || rightArrowKey || leftMouseBtn))
         {
             movement();
-            //Debug.Log(10);
         }
         else
         {
-            //Debug.Log(9);
+            Debug.Log(9);
             if (leftMouseBtn || leftArrowKey || rightArrowKey)
             {
                 if (rightArrowKey)
@@ -75,8 +98,6 @@ public class Player : OperativeEntity
         }
     }
 
-    protected override void OnEnable() { /*base.OnEnable();*/ }
-
     public void movement()
     {
         if (rightArrowKey)
@@ -93,7 +114,7 @@ public class Player : OperativeEntity
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         }
 
-        //Debug.Log("dir: " + direction);
+        Debug.Log("dor: " + direction);
 
         if (direction != 0)
         {
@@ -132,7 +153,7 @@ public class Player : OperativeEntity
         }
         else if (collision.CompareTag("ally"))
         {
-            playerCollidedWithAlly(gameObject, collision.gameObject);
+            playerCollidedWithAlly(gameObject, collision);
         }
         else if (collision.CompareTag("Shrinker"))
         {
@@ -140,7 +161,7 @@ public class Player : OperativeEntity
         }
         else if (collision.CompareTag("Side"))
         {
-           StartCoroutine( PlayerCollidedWithSide(collision));
+            StartCoroutine(PlayerCollidedWithSide(collision));
         }
     }
     public void PlayerCollidedWithPUP()
@@ -155,7 +176,6 @@ public class Player : OperativeEntity
         MainManager.instance.setScore(10);
         yield return new WaitForSeconds(.1f);
         //AudioManager.instance.PlaySFX("PowerUp");
-
     }
 
     IEnumerator RemainEffect(float t)
@@ -178,27 +198,32 @@ public class Player : OperativeEntity
             allyToBeChild.transform.SetParent(gameObject.transform);
         }
 
-        allyToBeChild.GetComponent<OperativeEntity>().DontMove();
         allyToBeChild.GetComponent<ally>().GetComponent<Image>().color = new Color(255, 255, 255, 100);
+        //NextBorderAlly(allyToBeChild, allyToBeParent);
+        //SetBorderAlly(allyToBeChild);
+
+        //Debug.Log("Ally ID added: " + allyToBeChild.GetComponent<ally>().allyID);
+
+        allyToBeChild.GetComponent<OperativeEntity>().DontMove();
         manager.setScore(allyScore);
         allyToBeChild.gameObject.tag = "player";
 
-        allyToBeChild.GetComponent<ally>().activateTheLight();
+        //allyToBeChild.GetComponent<ally>().activateTheLight();
 
         AudioManager.instance.PlaySFX("CollectAlly");
 
     }
 
+    
+
     public void playerCollidedWithEnemy(GameObject enemy)
     {
         DontMove();
+        Debug.Log(" 2. don't move: " + name);
         enemy.GetComponent<enemy>().DontMove();
         AudioManager.instance.PlaySFX("Hit");
         manager.Lose();
     }
 
-    IEnumerator justWait()
-    {
-        yield return new WaitForSeconds(1f);
-    }
+
 }

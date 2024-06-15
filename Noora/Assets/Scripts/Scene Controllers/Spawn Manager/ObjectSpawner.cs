@@ -20,7 +20,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float spawnRateFrameCounterLimit;
     [SerializeField] float spawnRateFrameCounter = 0;
 
-    /*public*/ float _minX, _maxX, _minY, _maxY;
+    /*public*/
+    float _minX, _maxX, _minY, _maxY;
     [SerializeField] private float verticalSpeed;
     [SerializeField] private Vector3 toSpawnLocalScale;
 
@@ -53,7 +54,7 @@ public class ObjectSpawner : MonoBehaviour
         objectsToDeactivate = new Queue<GameObject>();
         for (int i = 0; i < howManyObjectsAtFirst; i++)
         {
-            SpawnObject(objectToSpawn);     
+            SpawnObject(objectToSpawn);
         }
         Invoke("activateObject", firstActivationTime);
     }
@@ -129,6 +130,13 @@ public class ObjectSpawner : MonoBehaviour
 
         GameObject toSpawnObjectInstance = Instantiate(toSpawnObject, setPoint, Quaternion.identity);
         initializeObject(toSpawnObjectInstance.GetComponent<OperativeEntity>());
+        if (toSpawnObjectInstance.tag == "ally")
+        {
+            toSpawnObjectInstance.GetComponent<ally>().allyID = MainManager.instance.allyID;
+            toSpawnObjectInstance.GetComponent<ally>().borderSide = borderSide.None;
+            MainManager.instance.allyID += 1;
+        }
+
         PushToDeactivate(toSpawnObjectInstance);
         return toSpawnObjectInstance;
     }
@@ -139,15 +147,6 @@ public class ObjectSpawner : MonoBehaviour
         objectsToDeactivate.Enqueue(objectToDeactivate);
         objectToDeactivate.SetActive(false);
     }
-
-    //public void CallManagerForSpeedData(float verticalSpeed, float minX, float maxX, float minY, float maxY)
-    //{
-    //    _minX = minX;
-    //    _maxX = maxX;
-    //    _minY = minY;
-    //    _maxY = maxY;
-    //    this.verticalSpeed = verticalSpeed;
-    //}
 
     public void CallManagerForSpeedData(string assignedObjTag)
     {
