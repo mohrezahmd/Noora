@@ -58,9 +58,8 @@ public class OperativeEntity : MonoBehaviour
         verticalSpeed = vSpeed;
     }
 
-    public void DontMove()
+    public virtual void DontMove()
     {
-        Debug.Log(" 3. don't move: " + name);
         flagToMoveGlobal = false;
         SetSpeed(0, 0);
     }

@@ -165,10 +165,10 @@ MonoBehaviour:
   verticalSpeed: 0
   bordersContainer: {fileID: 0}
   flagIsActive: 1
-  flagToMove: 1
+  flagToMoveGlobal: 1
   allyID: 0
   myLight: {fileID: 7596822241223239230}
-  borderSide: 0
+  borderSide: 4
 --- !u!1001 &6714762693416885305
 PrefabInstance:
   m_ObjectHideFlags: 0

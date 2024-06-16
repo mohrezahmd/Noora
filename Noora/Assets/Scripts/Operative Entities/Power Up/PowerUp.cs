@@ -29,7 +29,7 @@ public class PowerUp : OperativeEntity
         }
         else if (CompareTag("Side") && collision.gameObject.CompareTag("player"))
         {
-            StartCoroutine( _player.GetComponent<Player>().PlayerCollidedWithSide(collision.gameObject) );
+            _player.GetComponent<Player>().PlayerCollidedWithSide(collision.gameObject);
         }
     }
 

@@ -20,7 +20,7 @@ public class SideCollider : MonoBehaviour //PowerUp
             //AudioManager.instance.PlaySFX("CollectAlly");
             //if(!(audioSource.pitch < 2f)) audioSource.pitch = 1.5f;
             audioSource.Play();
-            Debug.Log("1.pitch: " + audioSource.pitch);
+            //Debug.Log("1.pitch: " + audioSource.pitch);
 
         }
     }

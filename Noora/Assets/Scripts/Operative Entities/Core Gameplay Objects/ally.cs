@@ -28,31 +28,11 @@ public class ally : OperativeEntity
         {
             transform.position = new Vector3(transform.position.x, _maxY);
         }
-
     }
 
     private void FixedUpdate()
     {
-        gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 34f);
-        if (transform.parent.CompareTag("player"))
-        {
-            if ((transform.position.x >= _maxX || transform.position.x <= _minX) && notReachedBorder)
-            {
-                notReachedBorder = false;
-                if (!player.IsShrinkOn())
-                {
-                    transform.parent.gameObject.GetComponent<OperativeEntity>().DontMove();
-                }
-            }
-            else if (!(transform.position.x >= _maxX) && !(transform.position.x <= _minX))
-            {
-                notReachedBorder = true;
-            }
-
-        }
-
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, _minX, _maxX), transform.position.y);
-
 
         if (transform.position.y < _minY)
         {
@@ -80,7 +60,6 @@ public class ally : OperativeEntity
     {
         if (collision.CompareTag("enemy") && transform.parent != null && transform.parent.CompareTag("player"))
         {
-            Debug.Log("1. enemy collided" + name);
             player.playerCollidedWithEnemy(collision);
         }
         else if (collision.CompareTag("ally") && transform.parent != null && transform.parent.CompareTag("player"))
@@ -95,13 +74,11 @@ public class ally : OperativeEntity
             //player.PlayerMyAudio();
             selfCollisionCounter++;
         }
-        else if (collision.CompareTag("Side"))
+        else if (collision.CompareTag("Side") && transform.parent != null )
         {
             //player.PlayerMyAudio();
-
-            StartCoroutine(player.PlayerCollidedWithSide(collision));
+            player.playerCollidedWithSth(collision);
         }
-
     }
 
     public void activateTheLight()
