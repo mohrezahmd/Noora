@@ -14,7 +14,7 @@ public class Player : OperativeEntity
     [SerializeField] MainManager manager;
     int allyScore = 10;
 
-    //[SerializeField] AudioSource audioSource, sidesAudio, fail, powerUpAudio;
+    [SerializeField] AudioSource audioSource, sidesAudio, fail, powerUpAudio;
     [SerializeField] bool isShrinkOn = false;
 
     [SerializeField] GameObject sides;
@@ -23,8 +23,6 @@ public class Player : OperativeEntity
     bool leftMouseBtn;
     bool leftArrowKey;
     bool rightArrowKey;
-
-    //GameObject leftAlly, rightAlly, aboveAlly, bellowAlly;
 
     float pitchValue = 0f;
     int pitchCounter = 0;
@@ -38,11 +36,6 @@ public class Player : OperativeEntity
     {
         base.Start();
         setVerticalSpeed(0);
-
-        //leftAlly = null;
-        //rightAlly = null;
-        //aboveAlly = null;
-        //bellowAlly = null;
     }
 
     public bool leftArrowEnable = true;
@@ -53,15 +46,12 @@ public class Player : OperativeEntity
         GetInput();
     }
 
-    protected override void OnEnable() { /*base.OnEnable();*/ }
-
     public void GetInput()
     {
         leftMouseBtn = Input.GetKey(KeyCode.Mouse0);
         Vector3 leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (leftMouseBtnPos.y > 1f) leftMouseBtn = false;
 
-        //Input.GetKey(KeyCode.LeftArrow)
         leftArrowKey = ( Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0)) ) && flagToMoveLeft;
         rightArrowKey = ( Input.GetKey(KeyCode.RightArrow) || (leftMouseBtn && (leftMouseBtnPos.x > 0)) ) && flagToMoveRight;
 
@@ -152,7 +142,7 @@ public class Player : OperativeEntity
             ToMove(true, false);
         }
         MainManager.instance.setScore(10);
-        //AudioManager.instance.PlaySFX("PowerUp");
+        AudioManager.instance.PlaySFX("PowerUp");
     }
 
     IEnumerator RemainEffect(float t)
@@ -173,7 +163,7 @@ public class Player : OperativeEntity
         manager.setScore(allyScore);
         allyToBeChild.gameObject.tag = "player";
 
-        //allyToBeChild.GetComponent<ally>().activateTheLight();
+        allyToBeChild.GetComponent<ally>().activateTheLight();
         AudioManager.instance.PlaySFX("CollectAlly");
 
     }

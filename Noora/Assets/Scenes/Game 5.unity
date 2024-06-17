@@ -25431,11 +25431,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2857889067921582184}
-  - component: {fileID: 5132948641567709869}
   - component: {fileID: 6767868323354245610}
   - component: {fileID: 2677935177382907412}
   - component: {fileID: 6767868323354245612}
   - component: {fileID: 6767868323354245611}
+  - component: {fileID: 5132948641567709869}
   m_Layer: 5
   m_Name: Player
   m_TagString: player
