@@ -128,7 +128,7 @@ MonoBehaviour:
   verticalSpeed: 0
   bordersContainer: {fileID: 0}
   flagIsActive: 0
-  flagToMove: 1
+  flagToMoveGlobal: 1
 --- !u!222 &5325872721356677522
 CanvasRenderer:
   m_ObjectHideFlags: 0

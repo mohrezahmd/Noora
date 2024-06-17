@@ -32,7 +32,7 @@ public class ally : OperativeEntity
 
     private void FixedUpdate()
     {
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, _minX, _maxX), transform.position.y);
+        // transform.position = new Vector2(Mathf.Clamp(transform.position.x, _minX, _maxX), transform.position.y);
 
         if (transform.position.y < _minY)
         {
