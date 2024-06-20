@@ -115,7 +115,6 @@ public class MainManager : MonoBehaviour
     {
         //StartCoroutine(uiManager.Lose());
         PlayerPrefs.SetInt("HighScore", highScore);
-        PlayerPrefs.SetInt("HighScore", highScore);
         StartCoroutine(uiManager.Lose());
 
     }

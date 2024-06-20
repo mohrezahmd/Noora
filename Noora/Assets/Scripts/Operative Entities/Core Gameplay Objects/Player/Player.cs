@@ -30,7 +30,6 @@ public class Player : OperativeEntity
 
     bool flagToMoveRight = true;
     bool flagToMoveLeft = true;
-    [SerializeField] float n;
 
     protected override void Start()
     {
@@ -52,14 +51,13 @@ public class Player : OperativeEntity
         Vector3 leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (leftMouseBtnPos.y > 1f) leftMouseBtn = false;
 
-        leftArrowKey = ( Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0)) ) && flagToMoveLeft;
-        rightArrowKey = ( Input.GetKey(KeyCode.RightArrow) || (leftMouseBtn && (leftMouseBtnPos.x > 0)) ) && flagToMoveRight;
+        leftArrowKey = (Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0))) && flagToMoveLeft;
+        rightArrowKey = (Input.GetKey(KeyCode.RightArrow) || (leftMouseBtn && (leftMouseBtnPos.x > 0))) && flagToMoveRight;
 
         if (leftArrowKey || rightArrowKey)
         {
             Movement(rightArrowKey, leftArrowKey);
         }
-
     }
 
     public void Movement(bool _rightKey, bool _leftKey)
@@ -78,11 +76,12 @@ public class Player : OperativeEntity
         }
 
         transform.position += _direction * speed * Time.deltaTime * transform.right;
-        if(transform.position.x >= _maxX)
+        if (transform.position.x >= _maxX)
         {
             flagToMoveRight = false;
         }
-        else if(transform.position.x <= _minX) {
+        else if (transform.position.x <= _minX)
+        {
             flagToMoveLeft = false;
         }
 
@@ -93,15 +92,9 @@ public class Player : OperativeEntity
     {
         return isShrinkOn;
     }
-    //public void PlayerMyAudio()
-    //{
-    //    //audioSource.Play();
-    //    AudioManager.instance.PlaySFX("PowerUP");
-    //}
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        //base.OnTriggerEnter2D(collision);
         playerCollidedWithSth(collision.gameObject);
     }
 
@@ -141,8 +134,12 @@ public class Player : OperativeEntity
         {
             ToMove(true, false);
         }
-        MainManager.instance.setScore(10);
-        AudioManager.instance.PlaySFX("PowerUp");
+        if (isShrinkOn)
+        {
+            MainManager.instance.setScore(10);
+        }
+
+        //AudioManager.instance.PlaySFX("PowerUp");
     }
 
     IEnumerator RemainEffect(float t)

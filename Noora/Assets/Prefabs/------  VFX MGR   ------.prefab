@@ -84,7 +84,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.069539495, y: 1086}
-  m_SizeDelta: {x: 804.5, y: 100}
+  m_SizeDelta: {x: 1218.04, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!198 &8911629789258290413
 ParticleSystem:
@@ -725,7 +725,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 90, y: 0, z: 0}
-    m_Scale: {x: 5.82, y: 1, z: 1}
+    m_Scale: {x: 7.52, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.010423024, g: 0, b: 0.10980392, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5009,14 +5009,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c082003c827f645b8278503d04966a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 2362934460100695341}
   secondsAfterLose: 0.2
   manualSceneNum: 0
-  limitAlfa: 0
-  stepAlfa: 0.05
-  stepDelay: 0.1
-  funcDelay: 0.1
-  tmpScaleInitial: 0.1
-  tmpLimit: 0.8
-  tmpIncreament: 0.05
-  waitingTime: 0.05
+  fadeInDuration: 3
+  mixValue: 0
+  colourMix: {r: 0, g: 0, b: 0, a: 0}
+  colourA: {r: 0, g: 0, b: 0, a: 1}
+  colourB: {r: 0, g: 0, b: 0, a: 0}
+  lerpedValue: 0
+  scaleOutDuration: 1
+  scale1num: 0.5
+  scale2num: 0.8

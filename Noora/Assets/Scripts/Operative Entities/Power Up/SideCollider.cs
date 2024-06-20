@@ -6,6 +6,11 @@ public class SideCollider : MonoBehaviour //PowerUp
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject player, manager;
+
+    private void Start()
+    {
+    }
+
     protected void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();

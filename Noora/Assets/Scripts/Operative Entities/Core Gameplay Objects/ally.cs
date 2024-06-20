@@ -34,6 +34,7 @@ public class ally : OperativeEntity
     {
         if (player.IsShrinkOn())
         {
+            Debug.Log("is shrink on 2: " + player.IsShrinkOn());
             transform.position = new Vector2(Mathf.Clamp(transform.position.x, _minX, _maxX), transform.position.y);
         }
 
@@ -80,7 +81,10 @@ public class ally : OperativeEntity
         else if (collision.CompareTag("Side") && transform.parent != null )
         {
             //player.PlayerMyAudio();
-            player.playerCollidedWithSth(collision);
+            //if (player.IsShrinkOn())
+            //{
+                player.playerCollidedWithSth(collision);
+            //}
         }
     }
 
