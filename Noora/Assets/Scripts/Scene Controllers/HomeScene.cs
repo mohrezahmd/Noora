@@ -51,8 +51,7 @@ public class HomeScene : MonoBehaviour
 
     IEnumerator DelaySeconds()
     {
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(1);
-        yield return null;
     }
 }

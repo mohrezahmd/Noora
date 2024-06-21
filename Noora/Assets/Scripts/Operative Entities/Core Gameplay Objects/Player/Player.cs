@@ -47,37 +47,17 @@ public class Player : OperativeEntity
 
     public void GetInput()
     {
-
-        //if (mousePosition.x >= 0 && mousePosition.x <= Screen.width && mousePosition.y >= 0 && mousePosition.y <= Screen.height)
-        //{
-
         leftMouseBtn = Input.GetKey(KeyCode.Mouse0);
-        Vector3 leftMouseBtnPos = Input.mousePosition;
-        Debug.Log("left btn: " + leftMouseBtn);
-        //if (leftMouseBtnPos.x >= 0 && leftMouseBtnPos.x <= Screen.width && leftMouseBtnPos.y >= 0 && leftMouseBtnPos.y <= Screen.height)
-        //{
-        //    leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //}
-        //else
-        //{
-        //    Debug.Log("this is screen to world point: ");
-        //    return;
-        //}
+        Vector3 leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (leftMouseBtnPos.y > 1f) leftMouseBtn = false;
 
-            if (leftMouseBtnPos.y > 1f) leftMouseBtn = false;
+        leftArrowKey = (Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0))) && flagToMoveLeft;
+        rightArrowKey = (Input.GetKey(KeyCode.RightArrow) || (leftMouseBtn && (leftMouseBtnPos.x > 0))) && flagToMoveRight;
 
-            leftArrowKey = (Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0))) && flagToMoveLeft;
-            rightArrowKey = (Input.GetKey(KeyCode.RightArrow) || (leftMouseBtn && (leftMouseBtnPos.x > 0))) && flagToMoveRight;
-
-            if (leftArrowKey || rightArrowKey)
-            {
-                Movement(rightArrowKey, leftArrowKey);
-            }
-        //}
-        //else
-        //{
-        //    Debug.LogError("Mouse position out of view frustum: " + mousePosition);
-        //}
+        if (leftArrowKey || rightArrowKey)
+        {
+            Movement(rightArrowKey, leftArrowKey);
+        }
     }
 
     public void Movement(bool _rightKey, bool _leftKey)

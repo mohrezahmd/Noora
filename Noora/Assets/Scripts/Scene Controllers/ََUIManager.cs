@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
 
     protected void BeforeEnteringScene(int sceneNum)
     {
-        //AudioManager.instance.activateAudioObject(false);
+        AudioManager.instance.activateAudioObject(false);
         SceneManager.LoadScene(sceneNum);
     }
 
