@@ -75,7 +75,6 @@ public class MainManager : MonoBehaviour
 
         bgMaterial = BG.GetComponent<Renderer>().material;
         bgOffset = new Vector2(0f, backgroundSpeed);
-        Debug.LogWarning("this is bg mat" + bgMaterial);
 
         //sides.GetComponentsInChildren<SideCollider>()[0].setRelatives(player, gameObject);
         //sides.GetComponentsInChildren<SideCollider>()[1].setRelatives(player, gameObject);
@@ -89,7 +88,6 @@ public class MainManager : MonoBehaviour
     private void Update()
     {
         bgMaterial.mainTextureOffset += bgOffset * Time.deltaTime;
-        Debug.Log("you are a loooooooooooooooooooooserrrrrrrrrrrrrrrrrrr");
     }
 
     public void CallToSpawner(GameObject spawnedObject)

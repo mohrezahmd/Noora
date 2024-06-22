@@ -48,7 +48,12 @@ public class Player : OperativeEntity
     public void GetInput()
     {
         leftMouseBtn = Input.GetKey(KeyCode.Mouse0);
-        Vector3 leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 leftMouseBtnPos = Vector3.zero;
+
+        if (leftMouseBtn) { 
+            leftMouseBtnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
         if (leftMouseBtnPos.y > 1f) leftMouseBtn = false;
 
         leftArrowKey = (Input.GetKey(KeyCode.LeftArrow) || (leftMouseBtn && (leftMouseBtnPos.x < 0))) && flagToMoveLeft;
