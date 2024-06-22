@@ -94,28 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 2060
-      width: 2048
-      height: 938
-    spriteID: 3490e1db229a79345bd3fa1f1131659d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 2060}
-    spritePosition: {x: 0, y: 569}
-  - name: Layer 0
+  - name: lightning2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -125,8 +104,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 2048
-      height: 2048
-    spriteID: fcefd56bd1fb37a49a9c56626b336bd1
+      height: 1014
+    spriteID: db0e7206247630c469c1600f36fe329e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -135,7 +114,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 490}
   characterData:
     bones: []
     parts: []
@@ -151,7 +130,43 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -192,16 +207,16 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Layer 2 copy
-    spriteName: 
+  - name: lightning2
+    spriteName: lightning2
     isGroup: 0
     parentIndex: -1
     spriteID: db0e7206247630c469c1600f36fe329e
     layerID: 8
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
-    isImported: 0
-    isVisible: 0
+    isImported: 1
+    isVisible: 1
   - name: Layer 3
     spriteName: Layer 3
     isGroup: 0
@@ -210,15 +225,35 @@ ScriptedImporter:
     layerID: 10
     mosaicPosition: {x: 4, y: 2060}
     flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Layer 2
+    isImported: 0
+    isVisible: 0
+  - name: Layer 4 copy
     spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 9e8dec39fc48c6948b9ec3f471bef4b1
+    layerID: 13
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Layer 4
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b2038a4888f9a014f9c9b09eba122a47
+    layerID: 12
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: lightning
+    spriteName: lightning
     isGroup: 0
     parentIndex: -1
     spriteID: 525be5ceabd3b604cb81247a9d747531
     layerID: 7
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 0
     isVisible: 0
@@ -230,8 +265,8 @@ ScriptedImporter:
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
