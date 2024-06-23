@@ -7447,10 +7447,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 831447624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e39a776a6071924d82f2a19064d4db5, type: 3}
+  m_Script: {fileID: 11500000, guid: 36176bd662d2c9f40a973d2b4c6445b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 831447632}
+  audioSource: {fileID: 0}
   player: {fileID: 2878173275918466678}
   manager: {fileID: 159690107}
 --- !u!82 &831447632
@@ -18891,10 +18891,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1684542804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e39a776a6071924d82f2a19064d4db5, type: 3}
+  m_Script: {fileID: 11500000, guid: 36176bd662d2c9f40a973d2b4c6445b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1684542812}
+  audioSource: {fileID: 0}
   player: {fileID: 2878173275918466678}
   manager: {fileID: 159690107}
 --- !u!82 &1684542812
