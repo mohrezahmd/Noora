@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 public enum borderSide { Left, Right, Above, Bellow, None }
 
 public class ally : OperativeEntity
 {
     int selfCollisionCounter = 0;
-    bool notReachedBorder = true;
     public int allyID = 0;
 
     [SerializeField] public GameObject myLight;

@@ -1,8 +1,6 @@
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {

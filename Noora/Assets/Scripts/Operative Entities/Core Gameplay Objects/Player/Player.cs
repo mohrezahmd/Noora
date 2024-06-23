@@ -1,7 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : OperativeEntity
@@ -24,8 +22,6 @@ public class Player : OperativeEntity
     bool leftArrowKey;
     bool rightArrowKey;
 
-    float pitchValue = 0f;
-    int pitchCounter = 0;
     [SerializeField] float pitchValueDelta;
 
     bool flagToMoveRight = true;

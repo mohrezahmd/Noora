@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
@@ -23,7 +19,6 @@ public class MainManager : MonoBehaviour
     SpeedManager speedManager;
     UIManager uiManager;
     VFXManager vFXManager;
-    StateManager stateManager;
     AudioManager audioManager;
 
 
