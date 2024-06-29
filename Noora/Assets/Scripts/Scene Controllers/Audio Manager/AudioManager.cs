@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -102,4 +103,19 @@ public class AudioManager : MonoBehaviour
        sfxSource.gameObject.SetActive(isActive);
     }
 
+    public IEnumerator FadeOut(float FadeTime)
+    {
+         
+        float startVolume = sfxSource.volume;
+
+        while (sfxSource.volume > 0)
+        {
+            sfxSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        sfxSource.Stop();
+        sfxSource.volume = startVolume;
+    }
 }

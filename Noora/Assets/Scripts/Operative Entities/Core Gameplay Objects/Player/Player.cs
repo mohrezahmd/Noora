@@ -148,6 +148,7 @@ public class Player : OperativeEntity
         isShrinkOn = true;
         sides.SetActive(true);
         yield return new WaitForSeconds(t);
+        AudioManager.instance.FadeOut(3);
         isShrinkOn = false;
         sides.SetActive(false);
     }

@@ -122,6 +122,14 @@ public class VFXManager : MonoBehaviour
             }
         }
     }
+
+    //public IEnumerator FlipLight()
+    //{
+    //    Debug.Log("flip");
+    //    sideLight.transform.Rotate(new Vector3(0, 0, 180));
+    //    yield return new WaitForSeconds(.1f);
+    //    StartCoroutine(FlipLight());
+    //}
 }
 
 

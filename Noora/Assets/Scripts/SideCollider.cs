@@ -6,9 +6,12 @@ public class SideCollider : MonoBehaviour //PowerUp
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject player, manager;
+    [SerializeField] GameObject sideLight;
+    [SerializeField] GameObject[] sideLightsPlus1;
 
     private void Start()
     {
+        //StartCoroutine(FlipLight());
     }
 
     protected void OnEnable()
@@ -30,5 +33,12 @@ public class SideCollider : MonoBehaviour //PowerUp
         }
     }
 
+    //public IEnumerator FlipLight()
+    //{
+    //    Debug.Log("flip");
+    //    sideLight.transform.Rotate(new Vector3(0, 0,180));
+    //    yield return new WaitForSeconds(.1f);
+    //    StartCoroutine(FlipLight());
+    //}
 
 }
